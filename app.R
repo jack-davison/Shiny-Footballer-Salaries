@@ -1,7 +1,11 @@
 
+
+# Prep --------------------------------------------------------------------
+
+# read in players data
 players <- readr::read_csv("data/players.csv")
 
-# fix countries
+# fix countries to join w/ the shapefile
 players <-
   dplyr::mutate(
     players,
@@ -20,46 +24,72 @@ players <-
       "St Lucia" ~ "Saint Lucia",
       "The Gambia" ~ "Gambia",
       "Wales" ~ "United Kingdom",
+      "U.S.A." ~ "United States",
+      "North Macedonia" ~ "Macedonia",
+      "South Korea" ~ "Korea",
+      "Bosnia & Herzegovina" ~ "Bosnia and Herz.",
+      "Trinidad & Tobago" ~ "Trinidad and Tobago",
+      "U.A.E." ~ "United Arab Emirates",
+      "Guadeloupe" ~ "France",
       .default = nationality
     )
   )
 
+# read in shapefile
 earth <- sf::read_sf("data/earth.shp")
 
+# set ggplot theme
 ggplot2::theme_set(ggplot2::theme_classic(base_size = 14))
 
+# User Interface ----------------------------------------------------------
+
 ui <- bslib::page_sidebar(
+  # theme
   theme = bslib::bs_theme(
     bootswatch = "lux",
     bg = "#f2f2f2",
     fg = "#002B36"
   ),
   title = "League One Footballer Salaries",
+  
+  # sidebar
   sidebar = bslib::sidebar(
     shiny::p("Please select your team of choice below."),
     shiny::selectInput(
+      inputId = "selectLeague",
+      label = "League",
+      choices = c(unique(players$league)),
+      selected = ""
+    ),
+    shiny::selectInput(
       inputId = "selectTeam",
       label = "Team",
-      choices = c("All Teams", unique(players$city)),
+      choices = c(unique(players$city[players$league == "premier-league"])),
       selected = "Oxford United"
     ),
+    shiny::sliderInput(
+      inputId = "sliderAge",
+      label = "Age Range",
+      min = min(players$age),
+      max = max(players$age),
+      value = range(players$age)
+    ),
     shiny::HTML(
-      "<p>Some footballers get paid <i>a lot</i>, which can really skew the distribution
-. Click below to use a log scale on the graphs and map.</p>"
+      "<p>Some footballers get paid <i>a lot</i>, which can really skew the distribution. Click below to use a log scale on the graphs and map.</p>"
     ),
     shiny::checkboxInput(
       inputId = "checkLog",
       label = "Use log scale",
-      value = TRUE
+      value = FALSE
     ),
     shiny::hr(),
-    shiny::p(
-      "All of the panels to the right can be put into full-screen mode by clicking the bottom-right buttons in each card."
+    shiny::HTML(
+      "Data Source: <a href='https://salarysport.com/football'>salarysport.com</a>"
     ),
-    shiny::hr(),
-    shiny::HTML("Data Source: <a href='https://salarysport.com/football'>salarysport.com</a>"),
     shiny::HTML("Created by Jack Davison")
   ),
+  
+  # main body
   bslib::layout_columns(
     height = 250,
     bslib::value_box(
@@ -127,24 +157,47 @@ ui <- bslib::page_sidebar(
   )
 )
 
-server <- function(input, output) {
+
+# Server ------------------------------------------------------------------
+
+server <- function(input, output, session) {
+  # update teamdata by team selection
   teamdata <- reactive({
-    if (input$selectTeam == "All Teams") {
-      players
-    } else {
-      dplyr::filter(players, city == input$selectTeam)
-    }
+    dplyr::filter(
+      players,
+      city == input$selectTeam,
+      dplyr::between(age, input$sliderAge[1], input$sliderAge[2])
+    )
+  })
+  
+  # update team options by league
+  shiny::observeEvent(input$selectLeague, {
+    newteams <- unique(players$city[players$league == input$selectLeague])
+    shiny::updateSelectInput(session, "selectTeam",
+                             choices = newteams,
+                             selected = newteams[1])
+  })
+  
+  shiny::observeEvent(input$selectTeam, {
+    newteam <- players[players$city == input$selectTeam,]
+    shiny::updateSliderInput(session, "sliderAge",
+                             min = min(newteam$age),
+                             max = max(newteam$age),
+                             value = range(newteam$age))
   })
 
+  # render raw data table
   output$table <- gt::render_gt({
     teamdata() |>
       dplyr::select(-league, -city, -name) |>
       dplyr::rename_with(snakecase::to_title_case) |>
       gt::gt() |>
       gt::fmt_number(columns = 2:3, decimals = 2) |>
-      gt::opt_interactive()
+      gt::tab_options(    table.background.color = "#FFFFFF00") |>
+      gt::opt_interactive(use_filters = TRUE, use_search = TRUE)
   })
 
+  # render histogram
   output$histogram <- renderPlot({
     if (input$checkLog) {
       fun <- ggplot2::scale_x_log10
@@ -161,7 +214,8 @@ server <- function(input, output) {
       ggplot2::scale_y_continuous(expand = ggplot2::expansion(c(0, .1))) +
       ggplot2::labs(x = lab)
   })
-
+  
+  # render boxplots
   output$boxplot <- renderPlot({
     if (input$checkLog) {
       fun <- ggplot2::scale_y_log10
@@ -183,6 +237,7 @@ server <- function(input, output) {
       )
   })
 
+  # render leaflet map
   output$map <- leaflet::renderLeaflet({
     counts <-
       teamdata() |>
@@ -208,13 +263,14 @@ server <- function(input, output) {
 
     map <-
       leaflet::leaflet(data = counts) |>
-      leaflet::addProviderTiles("CartoDB.Positron") |>
+      leaflet::addProviderTiles(leaflet::providers$CartoDB.PositronNoLabels) |>
       leaflet::addPolygons(
         popup = ~paste0(name, "<br>Total Players: ", players),
         stroke = F,
-        fillOpacity = 1,
+        fillOpacity = 0.75,
         fillColor = ~ pal(plot_salary)
-      )
+      ) |>
+      leaflet::addProviderTiles(leaflet::providers$CartoDB.PositronOnlyLabels)
 
     if (input$checkLog) {
       trans_func <- function(x) {
@@ -239,6 +295,7 @@ server <- function(input, output) {
     map
   })
 
+  # calc stats
   output$salaryMean <- renderText({
     scales::label_dollar(prefix = "£")(mean(teamdata()$yearly_salary))
   })
@@ -252,5 +309,5 @@ server <- function(input, output) {
   })
 }
 
-
+# run app
 shiny::shinyApp(ui, server)
