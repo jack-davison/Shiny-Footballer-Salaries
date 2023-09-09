@@ -50,7 +50,7 @@ ui <- bslib::page_sidebar(
     bg = "#f2f2f2",
     fg = "#002B36"
   ),
-  title = "League One Footballer Salaries",
+  title = "UK Footballer Salaries",
   
   # sidebar
   sidebar = bslib::sidebar(
