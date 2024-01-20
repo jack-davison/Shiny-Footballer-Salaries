@@ -5,7 +5,7 @@ account: 7a817k-jack0davison
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 9814617
-bundleId: 7664362
+bundleId: 7664560
 url: https://7a817k-jack0davison.shinyapps.io/FootballerSalaries/
 version: 1
 asMultiple: FALSE
