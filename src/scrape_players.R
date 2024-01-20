@@ -28,4 +28,4 @@ players <-
   janitor::remove_empty("cols") |>
   mutate(across(weekly_wage:yearly_salary, readr::parse_number))
 
-readr::write_csv(players, "data/players.csv")
+readr::write_csv(distinct(players), "data/players.csv")
