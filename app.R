@@ -1,5 +1,4 @@
 
-
 # Prep --------------------------------------------------------------------
 
 # read in players data
@@ -55,19 +54,19 @@ ui <- bslib::page_sidebar(
   title = "UK Footballer Salaries",
   
   # sidebar
-  sidebar = bslib::sidebar(
+  sidebar = bslib::sidebar(width = "17%",
     shiny::p("Please select your team of choice below."),
     shiny::selectInput(
       inputId = "selectLeague",
       label = "League",
       choices = c(unique(players$league)),
-      selected = ""
+      selected = "premier-league"
     ),
     shiny::selectInput(
       inputId = "selectTeam",
       label = "Team",
       choices = c(unique(players$city[players$league == "premier-league"])),
-      selected = "Oxford United"
+      selected = "afc-bournemouth"
     ),
     shiny::sliderInput(
       inputId = "sliderAge",
@@ -94,7 +93,7 @@ ui <- bslib::page_sidebar(
   
   # main body
   bslib::layout_columns(
-    height = 250,
+    height = 500,
     bslib::value_box(
       "Median Annual Income",
       showcase = bsicons::bs_icon("currency-pound"),
@@ -115,7 +114,7 @@ ui <- bslib::page_sidebar(
     width = 0.5,
     bslib::card(
       bslib::card_header(
-        "Raw Data",
+        "Data",
         bslib::tooltip(
           bsicons::bs_icon("info-circle"),
           "This table can be sorted by clicking the column headers."
@@ -124,41 +123,12 @@ ui <- bslib::page_sidebar(
       bslib::card_body(reactable::reactableOutput("table")),
       full_screen = TRUE
     ),
-    bslib::card(
-      bslib::card_header(
-        "Team Nationalities",
-        bslib::tooltip(
-          bsicons::bs_icon("info-circle"),
-          "This map shows where team members are from, and the median salary for each country of origin."
-        )
-      ),
-      bslib::card_body(leaflet::leafletOutput("map"), padding = 0),
-      full_screen = TRUE,
-    ),
-    bslib::card(
-      bslib::card_header(
-        "Salary Distribution",
-        bslib::tooltip(
-          bsicons::bs_icon("info-circle"),
-          "This shows the distribution of salaries for the team in GBP. If it appears skewed, try using a log scale instead."
-        )
-      ),
-      bslib::card_body(plotOutput("histogram"), padding = 0),
-      full_screen = TRUE
-    ),
-    bslib::card(
-      bslib::card_header(
-        "Salary vs. Age",
-        bslib::tooltip(
-          bsicons::bs_icon("info-circle"),
-          "This shows how salary varies with age. Typically the younger players get paid less, but things tend to level out in their 20s."
-        )
-      ),
-      bslib::card_body(plotOutput("boxplot"), padding = 0),
-      full_screen = TRUE
-    ),
-  )
-)
+    bslib::navset_card_pill(
+      bslib::nav_panel("Team Nationalities", leaflet::leafletOutput("map")),
+      bslib::nav_panel("Salary Distribution", plotOutput("histogram")),
+      bslib::nav_panel("Salary vs. Age", plotOutput("boxplot"))
+    )
+  ))
 
 
 # Server ------------------------------------------------------------------
