@@ -76,6 +76,7 @@ ui <- bslib::page_sidebar(
       max = max(players$age),
       value = range(players$age)
     ),
+    bslib::input_task_button("choose", label = "Select"),
     shiny::HTML(
       "<p>Some footballers get paid <i>a lot</i>, which can really skew the distribution. Click below to use a log scale on the graphs and map.</p>"
     ),
@@ -163,21 +164,22 @@ ui <- bslib::page_sidebar(
 # Server ------------------------------------------------------------------
 
 server <- function(input, output, session) {
-  # update teamdata by team selection
-  teamdata <- reactive({
-    dplyr::filter(
-      players,
-      city == input$selectTeam,
-      dplyr::between(age, input$sliderAge[1], input$sliderAge[2])
-    )
-  })
-  
   # update team options by league
   shiny::observeEvent(input$selectLeague, {
     newteams <- unique(players$city[players$league == input$selectLeague])
-    shiny::updateSelectInput(session, "selectTeam",
+    shiny::updateSelectInput(session,
+                             "selectTeam",
                              choices = newteams,
                              selected = newteams[1])
+  })
+  
+  teamdata <- reactiveVal(dplyr::filter(players, city == "afc-bournemouth"))
+  shiny::observeEvent(input$choose, {
+    teamdata(dplyr::filter(
+      players,
+      city == input$selectTeam,
+      dplyr::between(age, input$sliderAge[1], input$sliderAge[2])
+    ))
   })
   
   shiny::observeEvent(input$selectTeam, {
