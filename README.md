@@ -1,7 +1,7 @@
 
 This is the R & Shiny code for an app which allows you to explore the salaries of UK footballers by team.
 
-It can be viewed [here](https://7a817k-jack0davison.shinyapps.io/FootballerSalaries/).
+It can be viewed [here](https://connect.posit.cloud/jack-davison/content/01923d6c-5042-07b3-eb51-7508cab303e2).
 
 A screenshot is shown below:
 
