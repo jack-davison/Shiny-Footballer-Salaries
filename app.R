@@ -44,6 +44,8 @@ ggplot2::theme_set(ggplot2::theme_classic(base_size = 14))
 # User Interface ----------------------------------------------------------
 
 ui <- bslib::page_sidebar(
+  shiny::useBusyIndicators(),
+  
   # theme
   theme = bslib::bs_theme(
     bootswatch = "lux",
