@@ -120,7 +120,7 @@ ui <- bslib::page_sidebar(
           "This table can be sorted by clicking the column headers."
         )
       ),
-      bslib::card_body(gt::gt_output("table"), padding = 0),
+      bslib::card_body(reactable::reactableOutput("table")),
       full_screen = TRUE
     ),
     bslib::card(
@@ -189,14 +189,21 @@ server <- function(input, output, session) {
   })
 
   # render raw data table
-  output$table <- gt::render_gt({
+  output$table <- reactable::renderReactable({
+    numdef <-  reactable::colDef(
+      format = reactable::colFormat(currency = "GBP", separators = TRUE)
+    )
+    
     teamdata() |>
       dplyr::select(-league, -city, -name) |>
       dplyr::rename_with(snakecase::to_title_case) |>
-      gt::gt() |>
-      gt::fmt_number(columns = 2:3, decimals = 2) |>
-      gt::tab_options(    table.background.color = "#FFFFFF00") |>
-      gt::opt_interactive(use_filters = TRUE, use_search = TRUE)
+      reactable::reactable(
+        filterable = TRUE,
+        searchable = TRUE,
+        pagination = FALSE,
+        columns = list(`Weekly Wage` = numdef, `Yearly Salary` = numdef),
+        style = list(background = "transparent")
+      )
   })
 
   # render histogram
