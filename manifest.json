@@ -222,38 +222,6 @@
         "Archs": "x64"
       }
     },
-    "V8": {
-      "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com",
-      "description": {
-        "Package": "V8",
-        "Type": "Package",
-        "Title": "Embedded JavaScript and WebAssembly Engine for R",
-        "Version": "5.0.1",
-        "Authors@R": "c(\n    person(\"Jeroen\", \"Ooms\", role = c(\"aut\", \"cre\"), email = \"jeroenooms@gmail.com\",\n      comment = c(ORCID = \"0000-0002-4035-0289\")),\n    person(\"Jan Marvin\", \"Garbuszus\", role = \"ctb\"))",
-        "Description": "An R interface to V8 <https://v8.dev>: Google's open source JavaScript\n    and WebAssembly engine. This package can be compiled either with V8 version 6 \n    and up or NodeJS when built as a shared library.",
-        "License": "MIT + file LICENSE",
-        "URL": "https://jeroen.r-universe.dev/V8",
-        "BugReports": "https://github.com/jeroen/v8/issues",
-        "SystemRequirements": "V8 engine version 6+ is needed for ES6 and WASM\nsupport. On Linux you can build against libv8-dev (Debian) or\nv8-devel (Fedora). We also provide static libv8 binaries for\nmost platforms, see the README for details.",
-        "NeedsCompilation": "yes",
-        "VignetteBuilder": "knitr",
-        "Imports": "Rcpp (>= 0.12.12), jsonlite (>= 1.0), curl (>= 1.0), utils",
-        "LinkingTo": "Rcpp",
-        "Suggests": "testthat, knitr, rmarkdown",
-        "RoxygenNote": "7.3.1",
-        "Language": "en-US",
-        "Encoding": "UTF-8",
-        "Biarch": "true",
-        "Packaged": "2024-09-19 15:49:08 UTC; jeroen",
-        "Author": "Jeroen Ooms [aut, cre] (<https://orcid.org/0000-0002-4035-0289>),\n  Jan Marvin Garbuszus [ctb]",
-        "Maintainer": "Jeroen Ooms <jeroenooms@gmail.com>",
-        "Repository": "CRAN",
-        "Date/Publication": "2024-09-20 08:40:18 UTC",
-        "Built": "R 4.4.1; x86_64-w64-mingw32; 2024-09-28 00:38:18 UTC; windows",
-        "Archs": "x64"
-      }
-    },
     "askpass": {
       "Source": "CRAN",
       "Repository": "https://cran.rstudio.com",
@@ -316,34 +284,6 @@
         "RemoteSha": "0.1-3"
       }
     },
-    "bigD": {
-      "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com",
-      "description": {
-        "Type": "Package",
-        "Package": "bigD",
-        "Title": "Flexibly Format Dates and Times to a Given Locale",
-        "Version": "0.2.0",
-        "Authors@R": "person(\"Richard\", \"Iannone\", , \"riannone@me.com\", c(\"aut\", \"cre\"),\n                  comment = c(ORCID = \"0000-0003-3925-190X\"))",
-        "Description": "Format dates and times flexibly and to whichever locales\n    make sense. Parses dates, times, and date-times in various formats\n    (including string-based ISO 8601 constructions). The formatting syntax gives\n    the user many options for formatting the date and time output in a precise\n    manner. Time zones in the input can be expressed in multiple ways and there\n    are many options for formatting time zones in the output as well. Several of\n    the provided helper functions allow for automatic generation of locale-aware\n    formatting patterns based on date/time skeleton formats and standardized\n    date/time formats with varying specificity.",
-        "License": "MIT + file LICENSE",
-        "URL": "https://github.com/rich-iannone/bigD",
-        "BugReports": "https://github.com/rich-iannone/bigD/issues",
-        "Depends": "R (>= 3.2.0)",
-        "Encoding": "UTF-8",
-        "RoxygenNote": "7.2.1",
-        "Suggests": "covr, testthat (>= 3.0.0)",
-        "Config/testthat/edition": "3",
-        "Config/testthat/parallel": "true",
-        "NeedsCompilation": "no",
-        "Packaged": "2022-09-02 20:05:54 UTC; rich",
-        "Author": "Richard Iannone [aut, cre] (<https://orcid.org/0000-0003-3925-190X>)",
-        "Maintainer": "Richard Iannone <riannone@me.com>",
-        "Repository": "CRAN",
-        "Date/Publication": "2022-09-05 08:30:08 UTC",
-        "Built": "R 4.4.1; ; 2024-09-28 00:38:08 UTC; windows"
-      }
-    },
     "bit": {
       "Source": "CRAN",
       "Repository": "https://cran.rstudio.com",
@@ -401,29 +341,6 @@
         "NeedsCompilation": "yes",
         "Packaged": "2024-09-21 22:05:07 UTC; jo",
         "Built": "R 4.4.1; x86_64-w64-mingw32; 2024-09-28 01:19:37 UTC; windows",
-        "Archs": "x64"
-      }
-    },
-    "bitops": {
-      "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com",
-      "description": {
-        "Package": "bitops",
-        "Version": "1.0-8",
-        "Date": "2024-07-29",
-        "Authors@R": "c(\n   person(\"Steve\", \"Dutky\", role = \"aut\", email = \"sdutky@terpalum.umd.edu\",\n    \t     comment = \"S original; then (after MM's port) revised and modified\"),\n   person(\"Martin\", \"Maechler\", role = c(\"cre\", \"aut\"), email = \"maechler@stat.math.ethz.ch\",\n\t     comment = c(\"Initial R port; tweaks\", ORCID = \"0000-0002-8685-9910\")))",
-        "Title": "Bitwise Operations",
-        "Description": "Functions for bitwise operations on integer vectors.",
-        "License": "GPL (>= 2)",
-        "URL": "https://github.com/mmaechler/R-bitops",
-        "BugReports": "https://github.com/mmaechler/R-bitops/issues",
-        "NeedsCompilation": "yes",
-        "Packaged": "2024-07-29 13:37:29 UTC; maechler",
-        "Author": "Steve Dutky [aut] (S original; then (after MM's port) revised and\n    modified),\n  Martin Maechler [cre, aut] (Initial R port; tweaks,\n    <https://orcid.org/0000-0002-8685-9910>)",
-        "Maintainer": "Martin Maechler <maechler@stat.math.ethz.ch>",
-        "Repository": "CRAN",
-        "Date/Publication": "2024-07-29 15:10:06 UTC",
-        "Built": "R 4.4.1; x86_64-w64-mingw32; 2024-07-30 23:50:47 UTC; windows",
         "Archs": "x64"
       }
     },
@@ -1239,38 +1156,6 @@
         "RemoteSha": "1.7.0"
       }
     },
-    "gt": {
-      "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com",
-      "description": {
-        "Type": "Package",
-        "Package": "gt",
-        "Title": "Easily Create Presentation-Ready Display Tables",
-        "Version": "0.11.0",
-        "Authors@R": "c(\n    person(\"Richard\", \"Iannone\", , \"rich@posit.co\", role = c(\"aut\", \"cre\"),\n           comment = c(ORCID = \"0000-0003-3925-190X\")),\n    person(\"Joe\", \"Cheng\", , \"joe@posit.co\", role = \"aut\"),\n    person(\"Barret\", \"Schloerke\", , \"barret@posit.co\", role = \"aut\",\n           comment = c(ORCID = \"0000-0001-9986-114X\")),\n    person(\"Ellis\", \"Hughes\", , \"ellis.h.hughes@gsk.com\", role = \"aut\",\n           comment = c(ORCID = \"0000-0003-0637-4436\")),\n    person(\"Alexandra\", \"Lauer\", , \"alexandralauer1@gmail.com\", role = \"aut\",\n           comment = c(ORCID = \"0000-0002-4191-6301\")),\n    person(\"JooYoung\", \"Seo\", , \"jseo1005@illinois.edu\", role = \"aut\",\n           comment = c(ORCID = \"0000-0002-4064-6012\")),\n    person(\"Ken\", \"Brevoort\", , \"ken@brevoort.com\", role = \"aut\",\n           comment = c(ORCID = \"0000-0002-4001-8358\")),\n    person(\"Olivier\", \"Roy\", role = \"aut\"),\n    person(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\"))\n  )",
-        "Description": "Build display tables from tabular data with an easy-to-use\n    set of functions. With its progressive approach, we can construct\n    display tables with a cohesive set of table parts. Table values can be\n    formatted using any of the included formatting functions. Footnotes\n    and cell styles can be precisely added through a location targeting\n    system. The way in which 'gt' handles things for you means that you\n    don't often have to worry about the fine details.",
-        "License": "MIT + file LICENSE",
-        "URL": "https://gt.rstudio.com, https://github.com/rstudio/gt",
-        "BugReports": "https://github.com/rstudio/gt/issues",
-        "Depends": "R (>= 3.6.0)",
-        "Imports": "base64enc (>= 0.1-3), bigD (>= 0.2), bitops (>= 1.0-7), cli\n(>= 3.6.0), commonmark (>= 1.8.1), dplyr (>= 1.1.0), fs (>=\n1.6.1), glue (>= 1.6.2), htmltools (>= 0.5.4), htmlwidgets (>=\n1.6.1), juicyjuice (>= 0.1.0), magrittr (>= 2.0.2), markdown\n(>= 1.5), reactable (>= 0.4.3), rlang (>= 1.1.0), sass (>=\n0.4.5), scales (>= 1.2.1), tidyselect (>= 1.2.0), vctrs, xml2\n(>= 1.3.3)",
-        "Suggests": "digest (>= 0.6.31), fontawesome (>= 0.5.2), ggplot2, grid,\ngtable, katex (>= 1.4.1), knitr, lubridate, magick, paletteer,\nRColorBrewer, rmarkdown (>= 2.20), rsvg, rvest, shiny (>=\n1.7.4), testthat (>= 3.1.9), tidyr, webshot2 (>= 0.1.0), withr",
-        "Config/Needs/coverage": "officer",
-        "ByteCompile": "true",
-        "Config/testthat/edition": "3",
-        "Config/testthat/parallel": "true",
-        "Encoding": "UTF-8",
-        "LazyData": "true",
-        "RoxygenNote": "7.3.2",
-        "NeedsCompilation": "no",
-        "Packaged": "2024-07-09 21:34:31 UTC; riannone",
-        "Author": "Richard Iannone [aut, cre] (<https://orcid.org/0000-0003-3925-190X>),\n  Joe Cheng [aut],\n  Barret Schloerke [aut] (<https://orcid.org/0000-0001-9986-114X>),\n  Ellis Hughes [aut] (<https://orcid.org/0000-0003-0637-4436>),\n  Alexandra Lauer [aut] (<https://orcid.org/0000-0002-4191-6301>),\n  JooYoung Seo [aut] (<https://orcid.org/0000-0002-4064-6012>),\n  Ken Brevoort [aut] (<https://orcid.org/0000-0002-4001-8358>),\n  Olivier Roy [aut],\n  Posit Software, PBC [cph, fnd]",
-        "Maintainer": "Richard Iannone <rich@posit.co>",
-        "Repository": "CRAN",
-        "Date/Publication": "2024-07-09 23:10:02 UTC",
-        "Built": "R 4.4.1; ; 2024-09-28 02:27:50 UTC; windows"
-      }
-    },
     "gtable": {
       "Source": "CRAN",
       "Repository": "https://cran.rstudio.com",
@@ -1640,32 +1525,6 @@
         "Archs": "x64"
       }
     },
-    "juicyjuice": {
-      "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com",
-      "description": {
-        "Package": "juicyjuice",
-        "Title": "Inline CSS Properties into HTML Tags Using 'juice'",
-        "Version": "0.1.0",
-        "Authors@R": "c(\n    person(\"Richard\", \"Iannone\", , \"riannone@me.com\", c(\"aut\", \"cre\", \"cph\"),\n           comment = c(ORCID = \"0000-0003-3925-190X\")),\n    person(\"Automattic\", role = c(\"cph\"), comment = \"juice library\"),\n    person(\"juice contributors\", role = c(\"ctb\"), comment = \"juice library\")\n    )",
-        "Description": "There are occasions where you need a piece of HTML with integrated\n    styles. A prime example of this is HTML email. This transformation\n    involves moving the CSS and associated formatting instructions from the\n    style block in the head of your document into the body of the HTML. Many\n    prominent email clients require integrated styles in HTML email; otherwise a\n    received HTML email will be displayed without any styling. This package will\n    quickly and precisely perform these CSS transformations when given HTML text\n    and it does so by using the JavaScript 'juice' library.",
-        "License": "MIT + file LICENSE",
-        "URL": "https://github.com/rich-iannone/juicyjuice",
-        "BugReports": "https://github.com/rich-iannone/juicyjuice/issues",
-        "Encoding": "UTF-8",
-        "RoxygenNote": "7.2.1",
-        "Imports": "V8 (>= 4.2.0)",
-        "Suggests": "testthat (>= 3.0.0)",
-        "Config/testthat/edition": "3",
-        "NeedsCompilation": "no",
-        "Packaged": "2022-11-09 19:42:30 UTC; rich",
-        "Author": "Richard Iannone [aut, cre, cph]\n    (<https://orcid.org/0000-0003-3925-190X>),\n  Automattic [cph] (juice library),\n  juice contributors [ctb] (juice library)",
-        "Maintainer": "Richard Iannone <riannone@me.com>",
-        "Repository": "CRAN",
-        "Date/Publication": "2022-11-10 19:00:02 UTC",
-        "Built": "R 4.4.1; ; 2024-09-28 01:19:48 UTC; windows"
-      }
-    },
     "knitr": {
       "Source": "CRAN",
       "Repository": "https://cran.rstudio.com",
@@ -2009,39 +1868,6 @@
         "RemoteRepos": "https://cran.rstudio.com/",
         "RemotePkgPlatform": "x86_64-w64-mingw32",
         "RemoteSha": "2.0.3"
-      }
-    },
-    "markdown": {
-      "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com",
-      "description": {
-        "Package": "markdown",
-        "Type": "Package",
-        "Title": "Render Markdown with 'commonmark'",
-        "Version": "1.13",
-        "Authors@R": "c(\n   person(\"Yihui\", \"Xie\", role = c(\"aut\", \"cre\"), email = \"xie@yihui.name\", comment = c(ORCID = \"0000-0003-0645-5666\")),\n   person(\"JJ\", \"Allaire\", role = \"aut\"),\n   person(\"Jeffrey\", \"Horner\", role = \"aut\"),\n   person(\"Henrik\", \"Bengtsson\", role = \"ctb\"),\n   person(\"Jim\", \"Hester\", role = \"ctb\"),\n   person(\"Yixuan\", \"Qiu\", role = \"ctb\"),\n   person(\"Kohske\", \"Takahashi\", role = \"ctb\"),\n   person(\"Adam\", \"November\", role = \"ctb\"),\n   person(\"Nacho\", \"Caballero\", role = \"ctb\"),\n   person(\"Jeroen\", \"Ooms\", role = \"ctb\"),\n   person(\"Thomas\", \"Leeper\", role = \"ctb\"),\n   person(\"Joe\", \"Cheng\", role = \"ctb\"),\n   person(\"Andrzej\", \"Oles\", role = \"ctb\"),\n   person(given = \"Posit Software, PBC\", role = c(\"cph\", \"fnd\"))\n   )",
-        "Description": "Render Markdown to full and lightweight HTML/LaTeX documents with\n    the 'commonmark' package. This package has been superseded by 'litedown'.",
-        "Depends": "R (>= 2.11.1)",
-        "Imports": "utils, commonmark (>= 1.9.0), xfun (>= 0.38)",
-        "Suggests": "knitr, rmarkdown (>= 2.18), yaml, RCurl",
-        "License": "MIT + file LICENSE",
-        "URL": "https://github.com/rstudio/markdown",
-        "BugReports": "https://github.com/rstudio/markdown/issues",
-        "RoxygenNote": "7.3.1",
-        "Encoding": "UTF-8",
-        "NeedsCompilation": "no",
-        "Packaged": "2024-06-04 15:36:56 UTC; yihui",
-        "Author": "Yihui Xie [aut, cre] (<https://orcid.org/0000-0003-0645-5666>),\n  JJ Allaire [aut],\n  Jeffrey Horner [aut],\n  Henrik Bengtsson [ctb],\n  Jim Hester [ctb],\n  Yixuan Qiu [ctb],\n  Kohske Takahashi [ctb],\n  Adam November [ctb],\n  Nacho Caballero [ctb],\n  Jeroen Ooms [ctb],\n  Thomas Leeper [ctb],\n  Joe Cheng [ctb],\n  Andrzej Oles [ctb],\n  Posit Software, PBC [cph, fnd]",
-        "Maintainer": "Yihui Xie <xie@yihui.name>",
-        "Repository": "CRAN",
-        "Date/Publication": "2024-06-04 20:50:02 UTC",
-        "Built": "R 4.4.1; ; 2024-07-04 01:04:16 UTC; windows",
-        "RemoteType": "standard",
-        "RemotePkgRef": "markdown",
-        "RemoteRef": "markdown",
-        "RemoteRepos": "https://cran.rstudio.com/",
-        "RemotePkgPlatform": "i386+x86_64-w64-mingw32",
-        "RemoteSha": "1.13"
       }
     },
     "memoise": {
@@ -3769,7 +3595,7 @@
   },
   "files": {
     "app.R": {
-      "checksum": "0f79f9fbafbd632855db34c5ba2a0e66"
+      "checksum": "00021f75ae99d47a253e0e6ee9540883"
     },
     "data/earth.dbf": {
       "checksum": "6ccad5f6ecaa0a37ca2b05cd19c336b1"
